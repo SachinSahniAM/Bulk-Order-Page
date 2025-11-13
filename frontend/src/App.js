@@ -277,24 +277,24 @@ const SocialProofSection = () => {
   return (
     <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-4 gap-8 text-center">
-          <div className="transform hover:scale-110 transition-all duration-300" data-testid="stat-customers">
-            <div className="text-5xl font-bold mb-2">1,000,000+</div>
-            <div className="text-blue-200">Happy Customers</div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="transform hover:scale-110 transition-all duration-300 p-4" data-testid="stat-customers">
+            <div className="text-4xl md:text-5xl font-bold mb-2 break-words">1,000,000+</div>
+            <div className="text-blue-200 text-sm md:text-base">Happy Customers</div>
           </div>
-          <div className="transform hover:scale-110 transition-all duration-300" data-testid="stat-companies">
-            <div className="text-5xl font-bold mb-2">5,000+</div>
-            <div className="text-blue-200">Companies Served</div>
+          <div className="transform hover:scale-110 transition-all duration-300 p-4" data-testid="stat-companies">
+            <div className="text-4xl md:text-5xl font-bold mb-2 break-words">5,000+</div>
+            <div className="text-blue-200 text-sm md:text-base">Companies Served</div>
           </div>
-          <div className="transform hover:scale-110 transition-all duration-300" data-testid="stat-rating">
-            <div className="text-5xl font-bold mb-2 flex items-center justify-center">
-              4.9 <Star className="w-8 h-8 text-yellow-300 ml-2 fill-current" />
+          <div className="transform hover:scale-110 transition-all duration-300 p-4" data-testid="stat-rating">
+            <div className="text-4xl md:text-5xl font-bold mb-2 flex items-center justify-center flex-wrap">
+              <span>4.9</span> <Star className="w-6 h-6 md:w-8 md:h-8 text-yellow-300 ml-2 fill-current" />
             </div>
-            <div className="text-blue-200">Customers Love Rating</div>
+            <div className="text-blue-200 text-sm md:text-base">Customers Love Rating</div>
           </div>
-          <div className="transform hover:scale-110 transition-all duration-300" data-testid="stat-delivery">
-            <div className="text-5xl font-bold mb-2">98%</div>
-            <div className="text-blue-200">On-Time Delivery</div>
+          <div className="transform hover:scale-110 transition-all duration-300 p-4" data-testid="stat-delivery">
+            <div className="text-4xl md:text-5xl font-bold mb-2 break-words">98%</div>
+            <div className="text-blue-200 text-sm md:text-base">On-Time Delivery</div>
           </div>
         </div>
       </div>
