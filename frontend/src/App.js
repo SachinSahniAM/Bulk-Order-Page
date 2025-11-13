@@ -102,19 +102,25 @@ const HeroSection = ({ onScrollToForm }) => {
             {/* Product Type */}
             <div className="mb-6">
               <label className="block text-sm font-semibold mb-3">Select Product</label>
-              <div className="grid grid-cols-3 gap-3">
-                {["t-shirt", "hoodie", "sweatshirt"].map((type) => (
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  { value: "round-neck-tshirt", label: "Round Neck T-Shirt", price: "₹499" },
+                  { value: "collar-tshirt", label: "Collar T-Shirt", price: "₹599" },
+                  { value: "hoodie", label: "Hoodie", price: "₹799" },
+                  { value: "zipper-hoodie", label: "Zipper Hoodie", price: "₹899" }
+                ].map((product) => (
                   <button
-                    key={type}
-                    onClick={() => setProductType(type)}
-                    className={`py-3 px-4 rounded-lg font-medium transition-all ${
-                      productType === type
+                    key={product.value}
+                    onClick={() => setProductType(product.value)}
+                    className={`py-3 px-4 rounded-lg font-medium transition-all text-left ${
+                      productType === product.value
                         ? "bg-blue-600 text-white shadow-lg scale-105"
                         : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
-                    data-testid={`product-${type}`}
+                    data-testid={`product-${product.value}`}
                   >
-                    {type.charAt(0).toUpperCase() + type.slice(1).replace("-", " ")}
+                    <div className="font-bold">{product.label}</div>
+                    <div className="text-xs opacity-80">From {product.price}</div>
                   </button>
                 ))}
               </div>
