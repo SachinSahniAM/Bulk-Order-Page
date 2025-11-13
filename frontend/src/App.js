@@ -802,9 +802,9 @@ const Footer = () => {
           </div>
           <div>
             <h4 className="font-bold mb-4">Contact</h4>
-            <p className="text-gray-400 mb-2">Phone: +91 98765 43210</p>
-            <p className="text-gray-400 mb-2">Email: bulk@almamater.com</p>
-            <p className="text-gray-400">WhatsApp: +91 98765 43210</p>
+            <p className="text-gray-400 mb-2">Phone: +91 76191 68045</p>
+            <p className="text-gray-400 mb-2">Email: info@almamaterstore.in</p>
+            <p className="text-gray-400">WhatsApp: +91 76191 68045</p>
           </div>
           <div>
             <h4 className="font-bold mb-4">Products</h4>
