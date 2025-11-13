@@ -565,7 +565,7 @@ const LeadFormSection = ({ formRef }) => {
               Thank you for your interest! Our team will review your requirements and send you a free mockup within 24 hours.
             </p>
             <p className="text-gray-600 mb-8">
-              Check your email for confirmation. Need urgent assistance? Call us at +91 98765 43210
+              Check your email for confirmation. Need urgent assistance? Call us at +91 76191 68045
             </p>
             <button
               onClick={() => setSubmitted(false)}
