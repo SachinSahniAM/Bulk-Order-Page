@@ -74,7 +74,7 @@ const HeroSection = ({ onScrollToForm }) => {
           <div className="text-center md:text-left">
             <div className="inline-flex items-center bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
               <Star className="w-4 h-4 text-yellow-300 mr-2" />
-              <span className="text-sm font-semibold">Trusted by 200,000+ Customers</span>
+              <span className="text-sm font-semibold">Trusted by 1,000,000+ Happy Customers</span>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight" data-testid="hero-headline">
               Get Custom Bulk T-Shirts & Hoodies
