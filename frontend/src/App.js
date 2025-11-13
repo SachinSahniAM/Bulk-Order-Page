@@ -275,7 +275,7 @@ const SocialProofSection = () => {
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-4 gap-8 text-center">
           <div className="transform hover:scale-110 transition-all duration-300" data-testid="stat-customers">
-            <div className="text-5xl font-bold mb-2">200,000+</div>
+            <div className="text-5xl font-bold mb-2">1,000,000+</div>
             <div className="text-blue-200">Happy Customers</div>
           </div>
           <div className="transform hover:scale-110 transition-all duration-300" data-testid="stat-companies">
@@ -284,9 +284,9 @@ const SocialProofSection = () => {
           </div>
           <div className="transform hover:scale-110 transition-all duration-300" data-testid="stat-rating">
             <div className="text-5xl font-bold mb-2 flex items-center justify-center">
-              4.8 <Star className="w-8 h-8 text-yellow-300 ml-2 fill-current" />
+              4.9 <Star className="w-8 h-8 text-yellow-300 ml-2 fill-current" />
             </div>
-            <div className="text-blue-200">Customer Rating</div>
+            <div className="text-blue-200">Customers Love Rating</div>
           </div>
           <div className="transform hover:scale-110 transition-all duration-300" data-testid="stat-delivery">
             <div className="text-5xl font-bold mb-2">98%</div>
