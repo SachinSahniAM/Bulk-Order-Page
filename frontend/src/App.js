@@ -236,7 +236,7 @@ const BenefitsSection = () => {
     {
       icon: <Users className="w-8 h-8" />,
       title: "Bulk Discounts",
-      description: "Up to 30% off on large orders",
+      description: "15-30% off based on quantity",
       color: "from-indigo-400 to-purple-500"
     }
   ];
