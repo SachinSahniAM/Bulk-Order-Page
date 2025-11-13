@@ -1,0 +1,146 @@
+===========================================
+📋 COPY-PASTE CODES FOR SHOPIFY
+===========================================
+
+===========================================
+1. FULL BANNER WITH BUTTONS (RECOMMENDED)
+===========================================
+
+<div style="background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); padding: 30px 20px; border-radius: 15px; text-align: center; margin: 30px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+  <div style="max-width: 800px; margin: 0 auto;">
+    <h2 style="color: white; font-size: 32px; margin: 0 0 15px 0; font-weight: bold;">⚡ Get Instant Bulk Order Quote</h2>
+    <p style="color: rgba(255,255,255,0.9); font-size: 18px; margin: 0 0 25px 0; line-height: 1.6;">Interactive calculator • Real-time pricing • 15-30% OFF on 50+ pieces<br>Round Neck T-Shirts from ₹499 | Hoodies from ₹799</p>
+    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+      <a href="https://bulk-order-revamp.preview.emergentagent.com/bulk-order" style="background: white; color: #2563eb; padding: 15px 35px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 18px; display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">🧮 Calculate My Quote</a>
+      <a href="https://wa.me/917619168045?text=Hi, I need a bulk order quote" style="background: #25D366; color: white; padding: 15px 35px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 18px; display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">💬 WhatsApp Us</a>
+    </div>
+    <p style="color: rgba(255,255,255,0.8); font-size: 14px; margin: 20px 0 0 0;">✓ 1M+ Happy Customers | ✓ 4.9★ Rating | ✓ Free Pan-India Shipping</p>
+  </div>
+</div>
+
+
+===========================================
+2. SIMPLE TEXT BANNER (MINIMAL)
+===========================================
+
+<div style="background: #2563eb; color: white; padding: 20px; text-align: center; border-radius: 10px; margin: 20px 0;">
+  <h3 style="margin: 0 0 10px 0;">🎯 NEW: Get Instant Bulk Order Quotes!</h3>
+  <p style="margin: 0 0 15px 0;">Calculate pricing in seconds with our interactive tool</p>
+  <a href="https://bulk-order-revamp.preview.emergentagent.com/bulk-order" style="background: white; color: #2563eb; padding: 12px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block;">Try Calculator Now →</a>
+</div>
+
+
+===========================================
+3. ALERT BOX STYLE (TOP OF PAGE)
+===========================================
+
+<div style="background: #fef3c7; border: 2px solid #f59e0b; padding: 15px; text-align: center; border-radius: 8px; margin: 20px 0;">
+  <strong style="color: #92400e;">🎉 NEW FEATURE:</strong>
+  <span style="color: #78350f;"> Get instant bulk order quotes with our calculator! </span>
+  <a href="https://bulk-order-revamp.preview.emergentagent.com/bulk-order" style="color: #2563eb; font-weight: bold; text-decoration: underline; margin-left: 10px;">Calculate Now →</a>
+</div>
+
+
+===========================================
+4. SIDE-BY-SIDE BUTTONS (COMPACT)
+===========================================
+
+<div style="text-align: center; margin: 30px 0;">
+  <p style="font-size: 20px; font-weight: bold; margin-bottom: 15px;">Need Bulk Orders? Get Instant Quote!</p>
+  <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+    <a href="https://bulk-order-revamp.preview.emergentagent.com/bulk-order" style="background: #2563eb; color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold;">Calculate Quote</a>
+    <a href="https://wa.me/917619168045" style="background: #25D366; color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold;">WhatsApp</a>
+  </div>
+</div>
+
+
+===========================================
+5. SINGLE BUTTON (VERY SIMPLE)
+===========================================
+
+<div style="text-align: center; margin: 30px 0;">
+  <a href="https://bulk-order-revamp.preview.emergentagent.com/bulk-order" style="background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); color: white; padding: 18px 40px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 20px; display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+    🧮 Get Instant Bulk Order Quote
+  </a>
+</div>
+
+
+===========================================
+6. TEXT LINK ONLY (SUPER MINIMAL)
+===========================================
+
+<p style="text-align: center; font-size: 18px; margin: 20px 0;">
+  <strong>Need bulk orders?</strong> 
+  <a href="https://bulk-order-revamp.preview.emergentagent.com/bulk-order" style="color: #2563eb; font-weight: bold; text-decoration: underline;">
+    Get instant quote with our calculator →
+  </a>
+</p>
+
+
+===========================================
+7. FLOATING ANNOUNCEMENT BAR (STICKY TOP)
+===========================================
+
+<div style="position: sticky; top: 0; z-index: 999; background: #1e40af; color: white; padding: 12px 20px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+  <span style="font-weight: bold;">🎯 NEW: Instant Bulk Order Calculator!</span>
+  <a href="https://bulk-order-revamp.preview.emergentagent.com/bulk-order" style="color: #fbbf24; margin-left: 15px; text-decoration: underline; font-weight: bold;">Try Now →</a>
+</div>
+
+
+===========================================
+HOW TO USE THESE CODES IN SHOPIFY:
+===========================================
+
+OPTION 1: Add to Any Page
+1. Go to Shopify Admin
+2. Click "Online Store" → "Pages"
+3. Select the page you want to edit
+4. Click "Show HTML" button (</> icon)
+5. Paste any code above
+6. Click "Save"
+
+OPTION 2: Add to Homepage
+1. Go to Shopify Admin
+2. Click "Online Store" → "Themes"
+3. Click "Customize" on your active theme
+4. Add a "Custom Liquid" or "HTML" section
+5. Paste any code above
+6. Click "Save"
+
+OPTION 3: Add to Existing Bulk Order Page
+1. Go to "Online Store" → "Pages"
+2. Find "Bulk Order" page
+3. Click "Show HTML" (</> icon)
+4. Paste code at the TOP of the content
+5. Click "Save"
+
+
+===========================================
+YOUR PAGE URL (FOR REFERENCE):
+===========================================
+
+https://bulk-order-revamp.preview.emergentagent.com/bulk-order
+
+
+===========================================
+CONTACT NUMBERS (ALREADY IN CODE):
+===========================================
+
+Phone: +91 76191 68045
+WhatsApp: +91 76191 68045
+Email: info@almamaterstore.in
+
+
+===========================================
+✅ QUICK START:
+===========================================
+
+1. Pick any banner code above (Code #1 recommended)
+2. Copy the entire code
+3. Login to Shopify Admin
+4. Go to your bulk order page
+5. Click "Show HTML"
+6. Paste at the top
+7. Save
+8. Done! ✅
+
