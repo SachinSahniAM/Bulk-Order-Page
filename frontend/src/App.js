@@ -133,7 +133,7 @@ const HeroSection = ({ onScrollToForm }) => {
               </label>
               <input
                 type="range"
-                min="50"
+                min="10"
                 max="500"
                 step="10"
                 value={quantity}
@@ -142,7 +142,7 @@ const HeroSection = ({ onScrollToForm }) => {
                 data-testid="quantity-slider"
               />
               <div className="flex justify-between text-xs text-gray-500 mt-1">
-                <span>50</span>
+                <span>10</span>
                 <span>500+</span>
               </div>
             </div>
