@@ -27,10 +27,7 @@ Reduce bounce rate from 86% to 50% and maximize genuine bulk order leads
 
 ### 3. **Trust Signals & Social Proof**
 ✅ **Multiple Trust Elements**
-- 200,000+ Happy Customers
-- 5,000+ Companies Served
-- 4.8-star rating
-- 98% On-Time Delivery
+- 1,000,000+ happy customers, 5,000+ companies, 4.9★ customers love rating, 98% on-time delivery
 - Real customer testimonials with names and companies
 - Visual trust badges throughout the page
 
