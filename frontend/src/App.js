@@ -716,8 +716,11 @@ const LeadFormSection = ({ formRef }) => {
               <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6 mb-6 border-2 border-green-200">
                 <p className="text-sm text-gray-600 mb-2">Estimated Price for Your Order:</p>
                 <p className="text-2xl font-bold text-green-600 mb-1">{quote.estimated_price_range}</p>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-600 mb-3">
                   {quote.discount_percentage}% discount • {quote.delivery_time} delivery
+                </p>
+                <p className="text-xs text-gray-600 bg-yellow-50 border border-yellow-200 rounded p-2">
+                  <span className="font-semibold">Note:</span> This is indicative pricing. Actual price may vary based on print size, position & colors.
                 </p>
               </div>
             )}
