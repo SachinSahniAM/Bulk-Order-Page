@@ -673,7 +673,7 @@ const LeadFormSection = ({ formRef }) => {
                   value={formData.quantity}
                   onChange={handleChange}
                   required
-                  min="50"
+                  min="10"
                   className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   data-testid="form-quantity"
                 />
