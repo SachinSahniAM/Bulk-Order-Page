@@ -169,6 +169,115 @@ async def calculate_quote(quote_request: QuoteRequest):
         delivery_time=delivery
     )
 
+def send_email_notification(lead_obj: BulkOrderLead):
+    """Send email notification to info@almamaterstore.in"""
+    try:
+        # Email configuration
+        recipient_email = "info@almamaterstore.in"
+        sender_email = "noreply@almamaterstore.in"
+        
+        # Create message
+        msg = MIMEMultipart('alternative')
+        msg['Subject'] = f"New Bulk Order Lead: {lead_obj.name} - {lead_obj.quantity} units"
+        msg['From'] = sender_email
+        msg['To'] = recipient_email
+        
+        # Create HTML email body
+        html_body = f"""
+        <html>
+          <head>
+            <style>
+              body {{ font-family: Arial, sans-serif; line-height: 1.6; color: #333; }}
+              .container {{ max-width: 600px; margin: 0 auto; padding: 20px; }}
+              .header {{ background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); color: white; padding: 20px; text-align: center; border-radius: 10px 10px 0 0; }}
+              .content {{ background: #f9fafb; padding: 30px; border: 1px solid #e5e7eb; }}
+              .field {{ margin-bottom: 15px; }}
+              .label {{ font-weight: bold; color: #1f2937; }}
+              .value {{ color: #4b5563; margin-left: 10px; }}
+              .highlight {{ background: #fef3c7; padding: 15px; border-left: 4px solid #f59e0b; margin: 20px 0; }}
+              .footer {{ background: #1f2937; color: white; padding: 15px; text-align: center; border-radius: 0 0 10px 10px; font-size: 12px; }}
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <div class="header">
+                <h2>🎯 New Bulk Order Lead Received!</h2>
+              </div>
+              <div class="content">
+                <div class="field">
+                  <span class="label">Name:</span>
+                  <span class="value">{lead_obj.name}</span>
+                </div>
+                <div class="field">
+                  <span class="label">Email:</span>
+                  <span class="value">{lead_obj.email}</span>
+                </div>
+                <div class="field">
+                  <span class="label">Phone:</span>
+                  <span class="value">{lead_obj.phone}</span>
+                </div>
+                <div class="field">
+                  <span class="label">Company:</span>
+                  <span class="value">{lead_obj.company_name or 'Not provided'}</span>
+                </div>
+                <div class="highlight">
+                  <div class="field">
+                    <span class="label">Product Type:</span>
+                    <span class="value">{lead_obj.product_type}</span>
+                  </div>
+                  <div class="field">
+                    <span class="label">Quantity:</span>
+                    <span class="value">{lead_obj.quantity} pieces</span>
+                  </div>
+                  <div class="field">
+                    <span class="label">Printing Type:</span>
+                    <span class="value">{lead_obj.printing_type}</span>
+                  </div>
+                  <div class="field">
+                    <span class="label">Estimated Price:</span>
+                    <span class="value">{lead_obj.estimated_price or 'Not calculated'}</span>
+                  </div>
+                </div>
+                <div class="field">
+                  <span class="label">Message:</span>
+                  <div class="value" style="margin-top: 10px; background: white; padding: 15px; border-radius: 5px;">
+                    {lead_obj.message or 'No additional message'}
+                  </div>
+                </div>
+                <div class="field" style="margin-top: 20px; padding-top: 20px; border-top: 2px solid #e5e7eb;">
+                  <span class="label">Lead ID:</span>
+                  <span class="value" style="font-family: monospace; font-size: 12px;">{lead_obj.id}</span>
+                </div>
+                <div class="field">
+                  <span class="label">Submitted:</span>
+                  <span class="value">{lead_obj.timestamp.strftime('%Y-%m-%d %H:%M:%S UTC')}</span>
+                </div>
+              </div>
+              <div class="footer">
+                <p>Alma Mater Store - Bulk Order System</p>
+                <p>This is an automated notification. Please respond to the customer within 24 hours.</p>
+              </div>
+            </div>
+          </body>
+        </html>
+        """
+        
+        # Attach HTML content
+        html_part = MIMEText(html_body, 'html')
+        msg.attach(html_part)
+        
+        # Send email using localhost SMTP (sendmail)
+        with smtplib.SMTP('localhost', 25) as server:
+            server.send_message(msg)
+        
+        logger.info(f"Email notification sent to {recipient_email} for lead {lead_obj.id}")
+        return True
+        
+    except Exception as e:
+        logger.error(f"Failed to send email notification: {str(e)}")
+        # Don't fail the request if email fails
+        return False
+
 @api_router.post("/bulk-order-lead", response_model=BulkOrderLead)
 async def create_bulk_order_lead(lead_data: BulkOrderLeadCreate):
     """Submit bulk order lead form"""
@@ -182,6 +291,12 @@ async def create_bulk_order_lead(lead_data: BulkOrderLeadCreate):
     _ = await db.bulk_order_leads.insert_one(doc)
     
     logger.info(f"New bulk order lead received: {lead_obj.name} - {lead_obj.email} - {lead_obj.quantity} units")
+    
+    # Send email notification (non-blocking)
+    try:
+        send_email_notification(lead_obj)
+    except Exception as e:
+        logger.warning(f"Email notification failed but lead saved: {str(e)}")
     
     return lead_obj
 
