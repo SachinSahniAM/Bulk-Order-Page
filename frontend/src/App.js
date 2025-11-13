@@ -413,7 +413,7 @@ const FAQSection = () => {
   const faqs = [
     {
       q: "How many pieces do I need to order for bulk pricing?",
-      a: "You can start with just 10 pieces for bulk pricing. Perfect for teams, clubs, college fests, and startup squads!"
+      a: "Minimum order is 50 pieces. You get 15% off on 50-99 pieces, 25% off on 100-199 pieces, and 30% off on 200+ pieces!"
     },
     {
       q: "Can I see a sample before placing my full order?",
