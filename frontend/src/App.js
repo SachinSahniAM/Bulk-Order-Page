@@ -658,9 +658,11 @@ const LeadFormSection = ({ formRef }) => {
                   className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   data-testid="form-product-type"
                 >
-                  <option value="t-shirt">T-Shirt</option>
-                  <option value="hoodie">Hoodie</option>
-                  <option value="sweatshirt">Sweatshirt</option>
+                  <option value="round-neck-tshirt">Round Neck T-Shirt (₹499)</option>
+                  <option value="collar-tshirt">Collar T-Shirt (₹599)</option>
+                  <option value="hoodie">Hoodie (₹799)</option>
+                  <option value="zipper-hoodie">Zipper Hoodie (₹899)</option>
+                  <option value="sweatshirt">Sweatshirt (₹699)</option>
                 </select>
               </div>
               <div>
