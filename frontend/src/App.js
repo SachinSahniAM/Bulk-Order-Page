@@ -12,7 +12,7 @@ const StickyContactButtons = () => {
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
       <a
-        href="https://wa.me/919876543210?text=Hi, I'm interested in bulk orders"
+        href="https://wa.me/917619168045?text=Hi, I'm interested in bulk orders"
         target="_blank"
         rel="noopener noreferrer"
         className="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 flex items-center justify-center group"
@@ -22,7 +22,7 @@ const StickyContactButtons = () => {
         <span className="ml-2 max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 whitespace-nowrap">WhatsApp</span>
       </a>
       <a
-        href="tel:+919876543210"
+        href="tel:+917619168045"
         className="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 flex items-center justify-center group"
         data-testid="call-button"
       >
