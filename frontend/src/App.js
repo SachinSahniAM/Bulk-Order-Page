@@ -436,6 +436,10 @@ const FAQSection = () => {
       a: "Absolutely! You can mix and match hoodies, t-shirts, and sweatshirts in different sizes and colors."
     },
     {
+      q: "Are the prices shown final?",
+      a: "The prices shown are indicative estimates. Final pricing may vary based on your specific requirements like print size, print position (front/back/sleeve), number of colors in your design, and any special customizations. Submit your requirements to get an exact quote."
+    },
+    {
       q: "What if I don't have a design ready?",
       a: "No worries — our designers can help you create a fresh, personalized design based on your idea or theme."
     },
