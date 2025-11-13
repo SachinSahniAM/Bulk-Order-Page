@@ -852,10 +852,10 @@ const Footer = () => {
 
 // Bulk Order Page Component (Full Featured)
 const BulkOrderPage = () => {
-  const formRef = useState(null)[0];
+  const formRef = useRef(null);
 
   const scrollToForm = () => {
-    formRef?.current?.scrollIntoView({ behavior: 'smooth' });
+    formRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
