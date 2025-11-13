@@ -50,7 +50,7 @@ class BulkOrderLead(BaseModel):
     quantity: int
     printing_type: str  # screen, digital, embroidery
     message: Optional[str] = None
-    estimated_price: Optional[float] = None
+    estimated_price: Optional[str] = None
     timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     status: str = Field(default="new")  # new, contacted, converted
 
@@ -63,7 +63,7 @@ class BulkOrderLeadCreate(BaseModel):
     quantity: int
     printing_type: str
     message: Optional[str] = None
-    estimated_price: Optional[float] = None
+    estimated_price: Optional[str] = None
 
 class QuoteRequest(BaseModel):
     product_type: str
