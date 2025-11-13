@@ -35,7 +35,7 @@ const StickyContactButtons = () => {
 
 // Hero Section with Quote Calculator
 const HeroSection = ({ onScrollToForm }) => {
-  const [productType, setProductType] = useState("t-shirt");
+  const [productType, setProductType] = useState("round-neck-tshirt");
   const [quantity, setQuantity] = useState(50);
   const [printingType, setPrintingType] = useState("screen");
   const [quote, setQuote] = useState(null);
