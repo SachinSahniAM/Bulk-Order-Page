@@ -572,8 +572,14 @@ const LeadFormSection = ({ formRef }) => {
             <p className="text-xl text-gray-700 mb-6">
               Thank you for your interest! Our team will review your requirements and send you a free mockup within 24 hours.
             </p>
+            <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4 mb-6">
+              <p className="text-blue-800 font-semibold mb-2">📧 Email Notification Sent</p>
+              <p className="text-blue-700 text-sm">
+                Your details have been sent to <strong>info@almamaterstore.in</strong>. Our team will contact you shortly!
+              </p>
+            </div>
             <p className="text-gray-600 mb-8">
-              Check your email for confirmation. Need urgent assistance? Call us at +91 76191 68045
+              Check your email for confirmation. Need urgent assistance? Call us at +91 76191 68045 or WhatsApp us!
             </p>
             <button
               onClick={() => setSubmitted(false)}
