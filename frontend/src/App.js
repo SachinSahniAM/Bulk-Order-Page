@@ -86,7 +86,7 @@ const HeroSection = ({ onScrollToForm }) => {
             <div className="flex flex-wrap gap-4 justify-center md:justify-start">
               <div className="flex items-center bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg">
                 <Check className="w-5 h-5 text-green-300 mr-2" />
-                <span className="text-sm">Minimum 10 pieces</span>
+                <span className="text-sm">Minimum 50 pieces</span>
               </div>
               <div className="flex items-center bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg">
                 <Check className="w-5 h-5 text-green-300 mr-2" />
