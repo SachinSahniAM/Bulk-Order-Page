@@ -123,12 +123,10 @@ async def calculate_quote(quote_request: QuoteRequest):
     
     # Quantity-based discounts
     discount_tiers = [
-        (500, 25),   # 25% off for 500+
-        (200, 20),   # 20% off for 200+
-        (100, 15),   # 15% off for 100+
-        (50, 10),    # 10% off for 50+
-        (25, 5),     # 5% off for 25+
-        (0, 0)       # No discount for less than 25
+        (200, 30),   # 30% off for 200+
+        (100, 25),   # 25% off for 100-199
+        (50, 15),    # 15% off for 50-99
+        (0, 0)       # No discount for less than 50 (0-49 pieces)
     ]
     
     # Get base price
