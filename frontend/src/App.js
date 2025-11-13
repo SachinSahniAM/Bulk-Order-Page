@@ -170,7 +170,7 @@ const HeroSection = ({ onScrollToForm }) => {
                   <p className="text-3xl font-bold text-green-600">{quote.estimated_price_range}</p>
                   <p className="text-sm text-gray-600 mt-1">Per piece: {quote.per_piece_price}</p>
                 </div>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-2 gap-4 text-sm mb-3">
                   <div className="text-center">
                     <p className="text-gray-600">Discount</p>
                     <p className="font-bold text-green-600">{quote.discount_percentage}% OFF</p>
@@ -179,6 +179,10 @@ const HeroSection = ({ onScrollToForm }) => {
                     <p className="text-gray-600">Delivery</p>
                     <p className="font-bold text-blue-600">{quote.delivery_time}</p>
                   </div>
+                </div>
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-xs text-gray-700">
+                  <p className="font-semibold text-yellow-800 mb-1">⚠️ Indicative Pricing</p>
+                  <p>Actual prices may vary based on print size, position, and number of colors.</p>
                 </div>
               </div>
             )}
