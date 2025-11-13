@@ -208,6 +208,43 @@ To update contact information:
 - **Website:** https://bulk-order-revamp.preview.emergentagent.com/
 - **API Base:** https://bulk-order-revamp.preview.emergentagent.com/api
 
+## 💰 Updated Pricing Structure
+
+### Base Prices (Updated with Actual Prices):
+- **Round Neck T-Shirt:** ₹499 (base)
+- **Collar T-Shirt:** ₹599 (base)
+- **Hoodie:** ₹799 (base)
+- **Zipper Hoodie:** ₹899 (base)
+- **Sweatshirt:** ₹699 (base)
+
+### Printing Type Price Adjustments:
+- **Screen Printing:** Base price (Most Popular)
+- **Digital/DTF Print:** +₹50
+- **Embroidery:** +₹100 (Premium)
+
+### Discount Tiers:
+- **25+ pieces:** 5% OFF
+- **50+ pieces:** 10% OFF
+- **100+ pieces:** 15% OFF
+- **200+ pieces:** 20% OFF
+- **500+ pieces:** 25% OFF
+
+### Example Calculations:
+1. **50 Round Neck T-Shirts (Screen Print):**
+   - Base: ₹499 × 50 = ₹24,950
+   - With 10% discount: ₹22,455 - ₹23,577
+   - Per piece: ₹449
+
+2. **100 Zipper Hoodies (Screen Print):**
+   - Base: ₹899 × 100 = ₹89,900
+   - With 15% discount: ₹76,415 - ₹80,235
+   - Per piece: ₹764
+
+3. **500 Collar T-Shirts (Embroidery):**
+   - Base: ₹699 × 500 = ₹349,500
+   - With 25% discount: ₹261,562 - ₹274,640
+   - Per piece: ₹523
+
 ## 📊 Analytics Tracking
 
 Consider adding these tracking events:
