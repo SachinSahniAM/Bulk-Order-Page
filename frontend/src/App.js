@@ -445,7 +445,7 @@ const FAQSection = () => {
     },
     {
       q: "Do you offer discounts on large orders?",
-      a: "Yes! 15% off on 50-99 pieces, 25% off on 100-199 pieces, and 30% off on 200+ pieces."
+      a: "Yes! 15% off on 50-99 pieces, 25% off on 100-199 pieces, and 30% off on 200+ pieces. Note: These are indicative prices. Actual pricing may vary based on print size, position, and number of colors."
     }
   ];
 
