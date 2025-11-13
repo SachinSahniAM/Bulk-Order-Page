@@ -750,7 +750,7 @@ const FinalCTASection = ({ onScrollToForm }) => {
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Get Started?</h2>
         <p className="text-xl mb-8 text-blue-100">
-          Join 200,000+ happy customers who trust Alma Mater Store for their bulk merchandise needs
+          Join 1,000,000+ happy customers who trust Alma Mater Store for their bulk merchandise needs
         </p>
         <div className="flex flex-wrap gap-4 justify-center">
           <button
