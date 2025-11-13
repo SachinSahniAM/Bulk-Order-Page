@@ -491,7 +491,7 @@ const LeadFormSection = ({ formRef }) => {
     email: "",
     phone: "",
     company_name: "",
-    product_type: "t-shirt",
+    product_type: "round-neck-tshirt",
     quantity: 50,
     printing_type: "screen",
     message: ""
