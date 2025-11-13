@@ -745,7 +745,7 @@ const LeadFormSection = ({ formRef }) => {
               )}
             </button>
             <p className="text-center text-sm text-gray-500 mt-4">
-              ✓ Your information is secure • ✓ We'll respond within 24 hours
+              ✓ Your information is secure • ✓ Email sent to info@almamaterstore.in • ✓ We'll respond within 24 hours
             </p>
           </form>
         </div>
