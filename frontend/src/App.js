@@ -441,7 +441,7 @@ const FAQSection = () => {
     },
     {
       q: "Do you offer discounts on large orders?",
-      a: "Yes! The more you order, the more you save. Get up to 30% off on bulk orders."
+      a: "Yes! 15% off on 50-99 pieces, 25% off on 100-199 pieces, and 30% off on 200+ pieces."
     }
   ];
 
