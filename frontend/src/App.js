@@ -833,8 +833,8 @@ const Footer = () => {
   );
 };
 
-// Main Home Component
-const Home = () => {
+// Bulk Order Page Component (Full Featured)
+const BulkOrderPage = () => {
   const formRef = useState(null)[0];
 
   const scrollToForm = () => {
@@ -857,14 +857,44 @@ const Home = () => {
   );
 };
 
+// Simple Home/Landing Page
+const Home = () => {
+  const helloWorldApi = async () => {
+    try {
+      const response = await axios.get(`${API}/`);
+      console.log(response.data.message);
+    } catch (e) {
+      console.error(e, `errored out requesting / api`);
+    }
+  };
+
+  useEffect(() => {
+    helloWorldApi();
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center">
+      <div className="text-center p-8">
+        <h1 className="text-5xl font-bold mb-6 text-gray-800">Welcome to Alma Mater Store</h1>
+        <p className="text-xl text-gray-600 mb-8">India's Most Loved Customised Merchandise Brand</p>
+        <a
+          href="/bulk-order"
+          className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg transition-all duration-300 hover:scale-105"
+        >
+          View Bulk Order Page
+        </a>
+      </div>
+    </div>
+  );
+};
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/bulk-order" element={<BulkOrderPage />} />
         </Routes>
       </BrowserRouter>
     </div>
