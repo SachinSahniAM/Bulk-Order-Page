@@ -110,26 +110,29 @@ async def get_status_checks():
 async def calculate_quote(quote_request: QuoteRequest):
     """Calculate estimated price for bulk order"""
     
-    # Base prices per piece (in INR)
+    # Base prices per piece (in INR) - Actual pricing from client
     base_prices = {
-        "t-shirt": {"screen": 250, "digital": 280, "embroidery": 320},
-        "hoodie": {"screen": 550, "digital": 600, "embroidery": 700},
-        "sweatshirt": {"screen": 450, "digital": 500, "embroidery": 600}
+        "round-neck-tshirt": {"screen": 499, "digital": 549, "embroidery": 599},
+        "collar-tshirt": {"screen": 599, "digital": 649, "embroidery": 699},
+        "hoodie": {"screen": 799, "digital": 849, "embroidery": 949},
+        "zipper-hoodie": {"screen": 899, "digital": 949, "embroidery": 1049},
+        # Legacy support for old product types
+        "t-shirt": {"screen": 499, "digital": 549, "embroidery": 599},
+        "sweatshirt": {"screen": 699, "digital": 749, "embroidery": 849}
     }
     
     # Quantity-based discounts
     discount_tiers = [
-        (500, 30),
-        (200, 25),
-        (100, 20),
-        (50, 15),
-        (25, 10),
-        (10, 5),
-        (0, 0)
+        (500, 25),   # 25% off for 500+
+        (200, 20),   # 20% off for 200+
+        (100, 15),   # 15% off for 100+
+        (50, 10),    # 10% off for 50+
+        (25, 5),     # 5% off for 25+
+        (0, 0)       # No discount for less than 25
     ]
     
     # Get base price
-    base_price = base_prices.get(quote_request.product_type, {}).get(quote_request.printing_type, 300)
+    base_price = base_prices.get(quote_request.product_type, {}).get(quote_request.printing_type, 499)
     
     # Calculate discount
     discount = 0
@@ -141,7 +144,7 @@ async def calculate_quote(quote_request: QuoteRequest):
     # Calculate final price
     discounted_price = base_price * (1 - discount / 100)
     total_min = discounted_price * quote_request.quantity
-    total_max = (discounted_price * 1.1) * quote_request.quantity  # 10% variation
+    total_max = (discounted_price * 1.05) * quote_request.quantity  # 5% variation for customization
     
     # Delivery time based on quantity
     if quote_request.quantity < 50:
