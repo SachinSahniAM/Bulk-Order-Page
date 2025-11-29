@@ -2,39 +2,29 @@ import { useState, useEffect, useRef } from "react";
 import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from "axios";
-import { Phone, MessageCircle, Check, Star, Package, Truck, Leaf, Award, Users, Building2, ChevronDown, ChevronUp, Zap, Send } from "lucide-react";
+import { Phone, MessageCircle, Check, Star, Zap, Send, ArrowRight, TrendingDown } from "lucide-react";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-// Sticky Contact Buttons Component
-const StickyContactButtons = () => {
+// Floating WhatsApp Button - More Aggressive
+const FloatingWhatsAppButton = () => {
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
-      <a
-        href="https://wa.me/917619168045?text=Hi, I'm interested in bulk orders"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 flex items-center justify-center group"
-        data-testid="whatsapp-button"
-      >
-        <MessageCircle className="w-6 h-6" />
-        <span className="ml-2 max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 whitespace-nowrap">WhatsApp</span>
-      </a>
-      <a
-        href="tel:+917619168045"
-        className="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 flex items-center justify-center group"
-        data-testid="call-button"
-      >
-        <Phone className="w-6 h-6" />
-        <span className="ml-2 max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 whitespace-nowrap">Call Now</span>
-      </a>
-    </div>
+    <a
+      href="https://wa.me/917619168045?text=Hi! I want an instant quote for bulk orders"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white px-6 py-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 flex items-center gap-3 animate-pulse"
+      data-testid="floating-whatsapp"
+    >
+      <MessageCircle className="w-6 h-6" />
+      <span className="font-bold">Get Instant Quote</span>
+    </a>
   );
 };
 
-// Hero Section with Quote Calculator
-const HeroSection = ({ onScrollToForm }) => {
+// Full-Screen Hero with Massive Calculator
+const AggressiveHero = () => {
   const [productType, setProductType] = useState("round-neck-tshirt");
   const [quantity, setQuantity] = useState(50);
   const [printingType, setPrintingType] = useState("screen");
@@ -61,75 +51,89 @@ const HeroSection = ({ onScrollToForm }) => {
     calculateQuote();
   }, [productType, quantity, printingType]);
 
-  return (
-    <div className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-purple-800 text-white py-20 px-4 overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="1"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}></div>
-      </div>
+  const sendToWhatsApp = () => {
+    const message = `Hi! I need a quote for:\n- Product: ${productType}\n- Quantity: ${quantity} pieces\n- Printing: ${printingType}\n- Estimated: ${quote?.estimated_price_range || 'calculating...'}\n\nPlease send me exact pricing and mockup!`;
+    window.open(`https://wa.me/917619168045?text=${encodeURIComponent(message)}`, '_blank');
+  };
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Left Column - Headline */}
-          <div className="text-center md:text-left">
-            <div className="inline-flex items-center bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
-              <Star className="w-4 h-4 text-yellow-300 mr-2" />
-              <span className="text-sm font-semibold">Trusted by 1,000,000+ Happy Customers</span>
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight" data-testid="hero-headline">
-              Get Custom Bulk T-Shirts & Hoodies
-              <span className="block text-yellow-300 mt-2">Instant Quote in Seconds</span>
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500 text-white flex items-center py-8 px-4">
+      <div className="max-w-7xl mx-auto w-full">
+        {/* Top Trust Strip */}
+        <div className="text-center mb-6 animate-fadeInUp">
+          <div className="inline-flex items-center bg-white/20 backdrop-blur-md px-6 py-3 rounded-full">
+            <Star className="w-5 h-5 text-yellow-300 mr-2 fill-current" />
+            <span className="font-bold text-lg">1M+ Customers • 4.9★ Rating • 98% On-Time</span>
+          </div>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
+          {/* Left: Headline */}
+          <div className="text-center lg:text-left">
+            <h1 className="text-5xl lg:text-7xl font-black mb-6 leading-tight">
+              Bulk T-Shirts & Hoodies
+              <span className="block text-yellow-300 mt-2">Get Quote in 30 Seconds</span>
             </h1>
-            <p className="text-xl mb-8 text-blue-100">
-              Premium quality • Free shipping • 7-10 days delivery • Custom designs
+            <p className="text-2xl mb-8 text-white/90">
+              From ₹349/piece • 15-30% OFF • Free Shipping
             </p>
-            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-              <div className="flex items-center bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg">
-                <Check className="w-5 h-5 text-green-300 mr-2" />
-                <span className="text-sm">Minimum 10 pieces</span>
-              </div>
-              <div className="flex items-center bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg">
-                <Check className="w-5 h-5 text-green-300 mr-2" />
-                <span className="text-sm">Pan-India delivery</span>
-              </div>
+            
+            {/* Quick Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <button
+                onClick={sendToWhatsApp}
+                className="bg-green-500 hover:bg-green-600 text-white font-bold py-5 px-8 rounded-xl shadow-2xl transition-all duration-300 hover:scale-105 flex items-center justify-center text-lg"
+              >
+                <MessageCircle className="w-6 h-6 mr-3" />
+                Send Quote to WhatsApp
+              </button>
+              <a
+                href="tel:+917619168045"
+                className="bg-white text-purple-600 hover:bg-gray-100 font-bold py-5 px-8 rounded-xl shadow-2xl transition-all duration-300 hover:scale-105 flex items-center justify-center text-lg"
+              >
+                <Phone className="w-6 h-6 mr-3" />
+                Call Now
+              </a>
             </div>
           </div>
 
-          {/* Right Column - Quote Calculator */}
-          <div className="bg-white text-gray-900 rounded-2xl shadow-2xl p-8" data-testid="quote-calculator">
-            <h2 className="text-2xl font-bold mb-6 text-center">Calculate Your Quote</h2>
-            
-            {/* Product Type */}
+          {/* Right: Massive Calculator */}
+          <div className="bg-white text-gray-900 rounded-3xl shadow-2xl p-8 lg:p-10">
+            <div className="text-center mb-6">
+              <h2 className="text-3xl font-black text-gray-900">Calculate Your Price</h2>
+              <p className="text-gray-600 mt-2">Instant quote with discounts!</p>
+            </div>
+
+            {/* Product Selection - Bigger */}
             <div className="mb-6">
-              <label className="block text-sm font-semibold mb-3">Select Product</label>
+              <label className="block text-sm font-bold mb-3 text-gray-700">SELECT PRODUCT</label>
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  { value: "round-neck-tshirt", label: "Round Neck T-Shirt", price: "₹499" },
-                  { value: "collar-tshirt", label: "Collar T-Shirt", price: "₹599" },
+                  { value: "round-neck-tshirt", label: "Round Neck", price: "₹499" },
+                  { value: "collar-tshirt", label: "Collar Tee", price: "₹599" },
                   { value: "hoodie", label: "Hoodie", price: "₹799" },
                   { value: "zipper-hoodie", label: "Zipper Hoodie", price: "₹899" }
                 ].map((product) => (
                   <button
                     key={product.value}
                     onClick={() => setProductType(product.value)}
-                    className={`py-3 px-4 rounded-lg font-medium transition-all text-left ${
+                    className={`py-4 px-4 rounded-xl font-bold transition-all text-center ${
                       productType === product.value
-                        ? "bg-blue-600 text-white shadow-lg scale-105"
+                        ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg scale-105"
                         : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
-                    data-testid={`product-${product.value}`}
                   >
-                    <div className="font-bold">{product.label}</div>
-                    <div className="text-xs opacity-80">From {product.price}</div>
+                    <div className="text-base">{product.label}</div>
+                    <div className="text-xs mt-1 opacity-75">{product.price}</div>
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* Quantity Slider */}
+            {/* Quantity Slider - Bigger */}
             <div className="mb-6">
-              <label className="block text-sm font-semibold mb-3">
-                Quantity: <span className="text-blue-600 text-xl">{quantity}</span> pieces
+              <label className="block text-sm font-bold mb-3 text-gray-700">
+                QUANTITY: <span className="text-blue-600 text-3xl ml-2">{quantity}</span> pieces
               </label>
               <input
                 type="range"
@@ -138,23 +142,23 @@ const HeroSection = ({ onScrollToForm }) => {
                 step="10"
                 value={quantity}
                 onChange={(e) => setQuantity(parseInt(e.target.value))}
-                className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
-                data-testid="quantity-slider"
+                className="w-full h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
               />
-              <div className="flex justify-between text-xs text-gray-500 mt-1">
+              <div className="flex justify-between text-xs text-gray-500 mt-2">
                 <span>10</span>
+                <span>100</span>
+                <span>200</span>
                 <span>500+</span>
               </div>
             </div>
 
-            {/* Printing Type */}
+            {/* Printing Type - Bigger */}
             <div className="mb-6">
-              <label className="block text-sm font-semibold mb-3">Printing Type</label>
+              <label className="block text-sm font-bold mb-3 text-gray-700">PRINTING TYPE</label>
               <select
                 value={printingType}
                 onChange={(e) => setPrintingType(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                data-testid="printing-type-select"
+                className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500 focus:border-transparent font-semibold text-lg"
               >
                 <option value="screen">Screen Printing (Most Popular)</option>
                 <option value="digital">Digital/DTF Print</option>
@@ -162,373 +166,69 @@ const HeroSection = ({ onScrollToForm }) => {
               </select>
             </div>
 
-            {/* Quote Display */}
+            {/* MASSIVE Quote Display */}
             {quote && (
-              <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6 mb-6 border-2 border-green-200" data-testid="quote-result">
-                <div className="text-center mb-4">
-                  <p className="text-sm text-gray-600 mb-1">Estimated Total Price</p>
-                  <p className="text-3xl font-bold text-green-600">{quote.estimated_price_range}</p>
-                  <p className="text-sm text-gray-600 mt-1">Per piece: {quote.per_piece_price}</p>
-                </div>
-                <div className="grid grid-cols-2 gap-4 text-sm mb-3">
-                  <div className="text-center">
-                    <p className="text-gray-600">Discount</p>
-                    <p className="font-bold text-green-600">{quote.discount_percentage}% OFF</p>
+              <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-8 mb-6 border-4 border-green-400">
+                <div className="text-center">
+                  <p className="text-sm text-gray-600 mb-2 font-bold">YOUR PRICE</p>
+                  <p className="text-5xl font-black text-green-600 mb-2">{quote.estimated_price_range}</p>
+                  <p className="text-xl text-gray-700 mb-4">Per piece: <span className="font-bold text-green-600">{quote.per_piece_price}</span></p>
+                  
+                  <div className="flex justify-center gap-6 mb-4">
+                    <div className="text-center">
+                      <div className="text-3xl font-black text-green-600">{quote.discount_percentage}%</div>
+                      <div className="text-xs text-gray-600">DISCOUNT</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-lg font-bold text-blue-600">{quote.delivery_time}</div>
+                      <div className="text-xs text-gray-600">DELIVERY</div>
+                    </div>
                   </div>
-                  <div className="text-center">
-                    <p className="text-gray-600">Delivery</p>
-                    <p className="font-bold text-blue-600">{quote.delivery_time}</p>
+
+                  <div className="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-3 text-xs text-gray-700">
+                    <p className="font-semibold">⚠️ Indicative pricing. Actual price may vary based on print size, position & colors.</p>
                   </div>
-                </div>
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-xs text-gray-700">
-                  <p className="font-semibold text-yellow-800 mb-1">⚠️ Indicative Pricing</p>
-                  <p>Actual prices may vary based on print size, position, and number of colors.</p>
                 </div>
               </div>
             )}
 
-            {/* CTA Button */}
-            <button
-              onClick={onScrollToForm}
-              className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-4 rounded-xl shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center"
-              data-testid="get-free-mockup-btn"
-            >
-              <Send className="w-5 h-5 mr-2" />
-              Get Free Mockup & Exact Quote
-            </button>
-            <p className="text-center text-xs text-gray-500 mt-3">✓ No credit card required • ✓ We'll email you at info@almamaterstore.in</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Benefits Section
-const BenefitsSection = () => {
-  const benefits = [
-    {
-      icon: <Zap className="w-8 h-8" />,
-      title: "Fast Delivery",
-      description: "7-10 days turnaround for most orders",
-      color: "from-yellow-400 to-orange-500"
-    },
-    {
-      icon: <Award className="w-8 h-8" />,
-      title: "Premium Quality",
-      description: "Bio-wash cotton, perfect stitching",
-      color: "from-purple-400 to-pink-500"
-    },
-    {
-      icon: <Leaf className="w-8 h-8" />,
-      title: "Eco-Friendly",
-      description: "Sustainable materials & processes",
-      color: "from-green-400 to-teal-500"
-    },
-    {
-      icon: <Truck className="w-8 h-8" />,
-      title: "Free Shipping",
-      description: "Pan-India delivery at no extra cost",
-      color: "from-blue-400 to-cyan-500"
-    },
-    {
-      icon: <Package className="w-8 h-8" />,
-      title: "Custom Designs",
-      description: "Free design support from our team",
-      color: "from-red-400 to-pink-500"
-    },
-    {
-      icon: <Users className="w-8 h-8" />,
-      title: "Bulk Discounts",
-      description: "15-30% off based on quantity",
-      color: "from-indigo-400 to-purple-500"
-    }
-  ];
-
-  return (
-    <div className="py-20 px-4 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Why Choose Alma Mater Store?</h2>
-          <p className="text-xl text-gray-600">Everything you need for the perfect bulk order</p>
-        </div>
-        <div className="grid md:grid-cols-3 gap-8">
-          {benefits.map((benefit, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-              data-testid={`benefit-card-${index}`}
-            >
-              <div className={`inline-flex p-4 rounded-lg bg-gradient-to-br ${benefit.color} text-white mb-4`}>
-                {benefit.icon}
-              </div>
-              <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
-              <p className="text-gray-600">{benefit.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Social Proof Section
-const SocialProofSection = () => {
-  return (
-    <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16 px-4">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div className="transform hover:scale-110 transition-all duration-300 p-4" data-testid="stat-customers">
-            <div className="text-4xl md:text-5xl font-bold mb-2 break-words">1,000,000+</div>
-            <div className="text-blue-200 text-sm md:text-base">Happy Customers</div>
-          </div>
-          <div className="transform hover:scale-110 transition-all duration-300 p-4" data-testid="stat-companies">
-            <div className="text-4xl md:text-5xl font-bold mb-2 break-words">5,000+</div>
-            <div className="text-blue-200 text-sm md:text-base">Companies Served</div>
-          </div>
-          <div className="transform hover:scale-110 transition-all duration-300 p-4" data-testid="stat-rating">
-            <div className="text-4xl md:text-5xl font-bold mb-2 flex items-center justify-center flex-wrap">
-              <span>4.9</span> <Star className="w-6 h-6 md:w-8 md:h-8 text-yellow-300 ml-2 fill-current" />
-            </div>
-            <div className="text-blue-200 text-sm md:text-base">Customers Love Rating</div>
-          </div>
-          <div className="transform hover:scale-110 transition-all duration-300 p-4" data-testid="stat-delivery">
-            <div className="text-4xl md:text-5xl font-bold mb-2 break-words">98%</div>
-            <div className="text-blue-200 text-sm md:text-base">On-Time Delivery</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Process Section
-const ProcessSection = () => {
-  const steps = [
-    {
-      number: "1",
-      title: "Submit Requirement",
-      description: "Fill the form with your order details and preferences"
-    },
-    {
-      number: "2",
-      title: "Get Free Mockup",
-      description: "Our team creates a design mockup within 24 hours"
-    },
-    {
-      number: "3",
-      title: "Approve Design",
-      description: "Review and approve the final design or request changes"
-    },
-    {
-      number: "4",
-      title: "Receive Order",
-      description: "Get your custom merchandise delivered to your doorstep"
-    }
-  ];
-
-  return (
-    <div className="py-20 px-4 bg-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">How It Works</h2>
-          <p className="text-xl text-gray-600">Simple 4-step process to get your bulk order</p>
-        </div>
-        <div className="grid md:grid-cols-4 gap-8">
-          {steps.map((step, index) => (
-            <div key={index} className="relative" data-testid={`process-step-${index}`}>
-              {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-12 left-1/2 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500 z-0"></div>
-              )}
-              <div className="relative z-10 text-center">
-                <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-3xl font-bold shadow-lg">
-                  {step.number}
-                </div>
-                <h3 className="text-xl font-bold mb-2">{step.title}</h3>
-                <p className="text-gray-600">{step.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Testimonials Section
-const TestimonialsSection = () => {
-  const testimonials = [
-    {
-      name: "Ravi Arora",
-      company: "Tech Conference",
-      text: "The custom hoodies elevated our tech conference. Excellent color matches and incredibly fast turnaround time!",
-      rating: 5
-    },
-    {
-      name: "Sameer Singhania",
-      company: "Corporate Event",
-      text: "Premium material and they nailed our complex logo with ease. Bulk pricing is unbeatable for the quality!",
-      rating: 5
-    },
-    {
-      name: "Abhijeet Ray",
-      company: "College Reunion",
-      text: "Great fabric, warm and comfy. The print quality was outstanding. Really appreciated the bulk discount!",
-      rating: 5
-    }
-  ];
-
-  return (
-    <div className="py-20 px-4 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Trusted by Thousands</h2>
-          <p className="text-xl text-gray-600">See what our customers say about us</p>
-        </div>
-        <div className="grid md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300"
-              data-testid={`testimonial-${index}`}
-            >
-              <div className="flex mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                ))}
-              </div>
-              <p className="text-gray-700 mb-6 italic">"{testimonial.text}"</p>
-              <div>
-                <p className="font-bold">{testimonial.name}</p>
-                <p className="text-sm text-gray-500">{testimonial.company}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// FAQ Section
-const FAQSection = () => {
-  const [openIndex, setOpenIndex] = useState(null);
-
-  const faqs = [
-    {
-      q: "How many pieces do I need to order for bulk pricing?",
-      a: "Minimum order is 10 pieces at regular price. Discounts start from 50 pieces: 15% off on 50-99 pieces, 25% off on 100-199 pieces, and 30% off on 200+ pieces!"
-    },
-    {
-      q: "Can I see a sample before placing my full order?",
-      a: "Yes! We offer sample pieces so you're confident about the fabric, fit, and print before going all in."
-    },
-    {
-      q: "How soon will I get my bulk order?",
-      a: "Most orders ship within 7–10 working days after design approval — super fast, even for last-minute events."
-    },
-    {
-      q: "Do you deliver across India?",
-      a: "Yes! We ship pan-India for free — colleges, startups, hostels, anywhere you need."
-    },
-    {
-      q: "Can I mix different products in one order?",
-      a: "Absolutely! You can mix and match hoodies, t-shirts, and sweatshirts in different sizes and colors."
-    },
-    {
-      q: "Are the prices shown final?",
-      a: "The prices shown are indicative estimates. Final pricing may vary based on your specific requirements like print size, print position (front/back/sleeve), number of colors in your design, and any special customizations. Submit your requirements to get an exact quote."
-    },
-    {
-      q: "What if I don't have a design ready?",
-      a: "No worries — our designers can help you create a fresh, personalized design based on your idea or theme."
-    },
-    {
-      q: "What sizes are available?",
-      a: "From XS to 5XL, we've got every body type covered — no teammate left behind!"
-    },
-    {
-      q: "Do you offer discounts on large orders?",
-      a: "Yes! 15% off on 50-99 pieces, 25% off on 100-199 pieces, and 30% off on 200+ pieces. Note: These are indicative prices. Actual pricing may vary based on print size, position, and number of colors."
-    }
-  ];
-
-  return (
-    <div className="py-20 px-4 bg-white">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Frequently Asked Questions</h2>
-          <p className="text-xl text-gray-600">Everything you need to know about bulk orders</p>
-        </div>
-        <div className="space-y-4">
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className="border border-gray-200 rounded-lg overflow-hidden hover:border-blue-500 transition-colors"
-              data-testid={`faq-item-${index}`}
-            >
+            {/* Aggressive CTA Buttons */}
+            <div className="space-y-3">
               <button
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full px-6 py-4 text-left flex justify-between items-center bg-white hover:bg-gray-50 transition-colors"
-                data-testid={`faq-question-${index}`}
+                onClick={sendToWhatsApp}
+                className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-black py-5 rounded-xl shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center text-lg"
               >
-                <span className="font-semibold text-lg">{faq.q}</span>
-                {openIndex === index ? (
-                  <ChevronUp className="w-5 h-5 text-blue-600" />
-                ) : (
-                  <ChevronDown className="w-5 h-5 text-gray-400" />
-                )}
+                <MessageCircle className="w-6 h-6 mr-3" />
+                Send to WhatsApp Now!
               </button>
-              {openIndex === index && (
-                <div className="px-6 py-4 bg-gray-50 border-t border-gray-200" data-testid={`faq-answer-${index}`}>
-                  <p className="text-gray-700">{faq.a}</p>
-                </div>
-              )}
+              <button
+                onClick={() => document.getElementById('quick-form')?.scrollIntoView({ behavior: 'smooth' })}
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-black py-5 rounded-xl shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center text-lg"
+              >
+                <Send className="w-6 h-6 mr-3" />
+                Get Free Mockup
+              </button>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-// Lead Form Section
-const LeadFormSection = ({ formRef }) => {
+// Quick Form Section - Ultra Simple
+const QuickFormSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    company_name: "",
     product_type: "round-neck-tshirt",
     quantity: 50,
     printing_type: "screen",
     message: ""
   });
-  const [quote, setQuote] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const calculateQuote = async () => {
-    try {
-      const response = await axios.post(`${API}/calculate-quote`, {
-        product_type: formData.product_type,
-        quantity: parseInt(formData.quantity),
-        printing_type: formData.printing_type
-      });
-      setQuote(response.data);
-    } catch (error) {
-      console.error("Error calculating quote:", error);
-    }
-  };
-
-  useEffect(() => {
-    calculateQuote();
-  }, [formData.product_type, formData.quantity, formData.printing_type]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -537,24 +237,12 @@ const LeadFormSection = ({ formRef }) => {
     try {
       await axios.post(`${API}/bulk-order-lead`, {
         ...formData,
-        quantity: parseInt(formData.quantity),
-        estimated_price: quote ? quote.estimated_price_range : null
+        quantity: parseInt(formData.quantity)
       });
       setSubmitted(true);
-      // Reset form
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        company_name: "",
-        product_type: "round-neck-tshirt",
-        quantity: 50,
-        printing_type: "screen",
-        message: ""
-      });
     } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("There was an error submitting your request. Please try again or contact us directly.");
+      console.error("Error:", error);
+      alert("Error submitting. Please try WhatsApp or call us!");
     } finally {
       setSubmitting(false);
     }
@@ -562,32 +250,31 @@ const LeadFormSection = ({ formRef }) => {
 
   if (submitted) {
     return (
-      <div className="py-20 px-4 bg-gradient-to-br from-green-50 to-blue-50" ref={formRef}>
+      <div id="quick-form" className="py-16 px-4 bg-gradient-to-br from-green-50 to-blue-50">
         <div className="max-w-2xl mx-auto text-center">
-          <div className="bg-white rounded-2xl shadow-2xl p-12">
-            <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Check className="w-10 h-10 text-white" />
+          <div className="bg-white rounded-3xl shadow-2xl p-12">
+            <div className="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Check className="w-12 h-12 text-white" />
             </div>
-            <h2 className="text-3xl font-bold mb-4 text-green-600">Request Received!</h2>
-            <p className="text-xl text-gray-700 mb-6">
-              Thank you for your interest! Our team will review your requirements and send you a free mockup within 24 hours.
-            </p>
-            <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4 mb-6">
-              <p className="text-blue-800 font-semibold mb-2">📧 Email Notification Sent</p>
-              <p className="text-blue-700 text-sm">
-                Your details have been sent to <strong>info@almamaterstore.in</strong>. Our team will contact you shortly!
-              </p>
+            <h2 className="text-4xl font-black mb-4 text-green-600">Got It! 🎉</h2>
+            <p className="text-2xl text-gray-700 mb-4">We'll send your mockup in 24 hours!</p>
+            <div className="bg-blue-50 border-2 border-blue-300 rounded-xl p-4 mb-6">
+              <p className="font-bold text-blue-800">📧 Email sent to info@almamaterstore.in</p>
             </div>
-            <p className="text-gray-600 mb-8">
-              Check your email for confirmation. Need urgent assistance? Call us at +91 76191 68045 or WhatsApp us!
-            </p>
-            <button
-              onClick={() => setSubmitted(false)}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg"
-              data-testid="submit-another-btn"
-            >
-              Submit Another Request
-            </button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="https://wa.me/917619168045"
+                className="bg-green-500 text-white font-bold py-4 px-8 rounded-xl"
+              >
+                Chat on WhatsApp
+              </a>
+              <button
+                onClick={() => setSubmitted(false)}
+                className="bg-gray-200 text-gray-700 font-bold py-4 px-8 rounded-xl"
+              >
+                Submit Another
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -595,308 +282,210 @@ const LeadFormSection = ({ formRef }) => {
   }
 
   return (
-    <div className="py-20 px-4 bg-gradient-to-br from-blue-50 to-purple-50" ref={formRef}>
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4">Get Your Free Mockup</h2>
-          <p className="text-xl text-gray-600">Fill in your details and we'll get back to you within 24 hours</p>
+    <div id="quick-form" className="py-16 px-4 bg-white">
+      <div className="max-w-3xl mx-auto">
+        <div className="text-center mb-8">
+          <h2 className="text-4xl font-black mb-4">Get Your Free Mockup</h2>
+          <p className="text-xl text-gray-600">Fill 6 fields • Get quote in 24 hours</p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12">
-          <form onSubmit={handleSubmit} data-testid="lead-form">
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label className="block text-sm font-semibold mb-2">Name *</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="Your full name"
-                  data-testid="form-name"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold mb-2">Email *</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="your@email.com"
-                  data-testid="form-email"
-                />
-              </div>
-            </div>
+        <form onSubmit={handleSubmit} className="bg-gray-50 rounded-3xl p-8 shadow-xl">
+          <div className="grid md:grid-cols-2 gap-6 mb-6">
+            <input
+              type="text"
+              placeholder="Your Name *"
+              value={formData.name}
+              onChange={(e) => setFormData({...formData, name: e.target.value})}
+              required
+              className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500 text-lg"
+            />
+            <input
+              type="email"
+              placeholder="Email *"
+              value={formData.email}
+              onChange={(e) => setFormData({...formData, email: e.target.value})}
+              required
+              className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500 text-lg"
+            />
+          </div>
 
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label className="block text-sm font-semibold mb-2">Phone *</label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="+91 98765 43210"
-                  data-testid="form-phone"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold mb-2">Company/Organization</label>
-                <input
-                  type="text"
-                  name="company_name"
-                  value={formData.company_name}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="Optional"
-                  data-testid="form-company"
-                />
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-6 mb-6">
-              <div>
-                <label className="block text-sm font-semibold mb-2">Product Type *</label>
-                <select
-                  name="product_type"
-                  value={formData.product_type}
-                  onChange={handleChange}
-                  required
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  data-testid="form-product-type"
-                >
-                  <option value="round-neck-tshirt">Round Neck T-Shirt (₹499)</option>
-                  <option value="collar-tshirt">Collar T-Shirt (₹599)</option>
-                  <option value="hoodie">Hoodie (₹799)</option>
-                  <option value="zipper-hoodie">Zipper Hoodie (₹899)</option>
-                  <option value="sweatshirt">Sweatshirt (₹699)</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-semibold mb-2">Quantity *</label>
-                <input
-                  type="number"
-                  name="quantity"
-                  value={formData.quantity}
-                  onChange={handleChange}
-                  required
-                  min="10"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  data-testid="form-quantity"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold mb-2">Printing Type *</label>
-                <select
-                  name="printing_type"
-                  value={formData.printing_type}
-                  onChange={handleChange}
-                  required
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  data-testid="form-printing-type"
-                >
-                  <option value="screen">Screen Printing</option>
-                  <option value="digital">Digital Print</option>
-                  <option value="embroidery">Embroidery</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="mb-6">
-              <label className="block text-sm font-semibold mb-2">Additional Requirements</label>
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                rows="4"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Tell us about your design requirements, color preferences, delivery date, etc."
-                data-testid="form-message"
-              ></textarea>
-            </div>
-
-            {quote && (
-              <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6 mb-6 border-2 border-green-200">
-                <p className="text-sm text-gray-600 mb-2">Estimated Price for Your Order:</p>
-                <p className="text-2xl font-bold text-green-600 mb-1">{quote.estimated_price_range}</p>
-                <p className="text-sm text-gray-600 mb-3">
-                  {quote.discount_percentage}% discount • {quote.delivery_time} delivery
-                </p>
-                <p className="text-xs text-gray-600 bg-yellow-50 border border-yellow-200 rounded p-2">
-                  <span className="font-semibold">Note:</span> This is indicative pricing. Actual price may vary based on print size, position & colors.
-                </p>
-              </div>
-            )}
-
-            <button
-              type="submit"
-              disabled={submitting}
-              className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-4 rounded-xl shadow-lg transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
-              data-testid="submit-form-btn"
+          <div className="grid md:grid-cols-3 gap-6 mb-6">
+            <input
+              type="tel"
+              placeholder="Phone *"
+              value={formData.phone}
+              onChange={(e) => setFormData({...formData, phone: e.target.value})}
+              required
+              className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500 text-lg"
+            />
+            <input
+              type="number"
+              placeholder="Quantity *"
+              value={formData.quantity}
+              onChange={(e) => setFormData({...formData, quantity: e.target.value})}
+              required
+              min="10"
+              className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500 text-lg"
+            />
+            <select
+              value={formData.product_type}
+              onChange={(e) => setFormData({...formData, product_type: e.target.value})}
+              className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500 text-lg"
             >
-              {submitting ? (
-                "Submitting..."
-              ) : (
-                <>
-                  <Send className="w-5 h-5 mr-2" />
-                  Submit Request & Get Free Mockup
-                </>
-              )}
-            </button>
-            <p className="text-center text-sm text-gray-500 mt-4">
-              ✓ Your information is secure • ✓ Email sent to info@almamaterstore.in • ✓ We'll respond within 24 hours
-            </p>
-          </form>
+              <option value="round-neck-tshirt">T-Shirt</option>
+              <option value="hoodie">Hoodie</option>
+            </select>
+          </div>
+
+          <button
+            type="submit"
+            disabled={submitting}
+            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-black py-5 rounded-xl text-xl shadow-lg hover:scale-105 transition-all"
+          >
+            {submitting ? "Sending..." : "Get Free Mockup Now →"}
+          </button>
+          <p className="text-center text-sm text-gray-500 mt-4">
+            ✓ Email sent to info@almamaterstore.in • ✓ Response in 24hrs
+          </p>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+// Mini Process - 3 Steps Only
+const MiniProcess = () => {
+  return (
+    <div className="py-16 px-4 bg-gradient-to-br from-blue-50 to-purple-50">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-4xl font-black text-center mb-12">How It Works</h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            { num: "1", title: "Calculate & Send", desc: "Get instant quote via WhatsApp" },
+            { num: "2", title: "Get Mockup", desc: "Free design in 24 hours" },
+            { num: "3", title: "Receive Order", desc: "7-10 days delivery" }
+          ].map((step, i) => (
+            <div key={i} className="text-center">
+              <div className="w-20 h-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-3xl font-black rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                {step.num}
+              </div>
+              <h3 className="text-2xl font-bold mb-2">{step.title}</h3>
+              <p className="text-gray-600 text-lg">{step.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   );
 };
 
-// Final CTA Section
-const FinalCTASection = ({ onScrollToForm }) => {
+// Mini FAQ - 5 Questions Only
+const MiniFAQ = () => {
+  const [open, setOpen] = useState(null);
+  const faqs = [
+    { q: "Minimum order?", a: "10 pieces. Discounts start from 50 pieces (15% OFF)." },
+    { q: "Delivery time?", a: "7-10 days for most orders. Faster for urgent needs." },
+    { q: "Can I see a sample?", a: "Yes! We send free mockups before production." },
+    { q: "All India delivery?", a: "Yes, free shipping pan-India." },
+    { q: "Payment terms?", a: "50% advance, 50% before delivery. Flexible for bulk orders." }
+  ];
+
   return (
-    <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20 px-4">
+    <div className="py-16 px-4 bg-white">
+      <div className="max-w-4xl mx-auto">
+        <h2 className="text-4xl font-black text-center mb-12">Quick Answers</h2>
+        <div className="space-y-4">
+          {faqs.map((faq, i) => (
+            <div key={i} className="border-2 border-gray-200 rounded-xl overflow-hidden">
+              <button
+                onClick={() => setOpen(open === i ? null : i)}
+                className="w-full px-6 py-4 text-left flex justify-between items-center bg-white hover:bg-gray-50 font-bold text-lg"
+              >
+                {faq.q}
+                <span className="text-2xl">{open === i ? '−' : '+'}</span>
+              </button>
+              {open === i && (
+                <div className="px-6 py-4 bg-gray-50 text-gray-700">
+                  {faq.a}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Final Aggressive CTA
+const FinalCTA = () => {
+  return (
+    <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white py-20 px-4">
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Get Started?</h2>
-        <p className="text-xl mb-8 text-blue-100">
-          Join 1,000,000+ happy customers who trust Alma Mater Store for their bulk merchandise needs
-        </p>
-        <div className="flex flex-wrap gap-4 justify-center">
-          <button
-            onClick={onScrollToForm}
-            className="bg-white text-blue-600 hover:bg-gray-100 font-bold py-4 px-8 rounded-xl shadow-lg transition-all duration-300 hover:scale-105"
-            data-testid="final-cta-form"
-          >
-            Get Free Mockup Now
-          </button>
+        <h2 className="text-5xl font-black mb-6">Ready? Let's Do This! 🚀</h2>
+        <p className="text-2xl mb-10">1M+ customers trust us. Join them today!</p>
+        <div className="flex flex-col sm:flex-row gap-6 justify-center">
           <a
-            href="https://wa.me/917619168045?text=Hi, I'm interested in bulk orders"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-xl shadow-lg transition-all duration-300 hover:scale-105 flex items-center"
-            data-testid="final-cta-whatsapp"
+            href="https://wa.me/917619168045?text=Hi! I want a bulk order quote!"
+            className="bg-green-500 hover:bg-green-600 text-white font-black py-6 px-12 rounded-xl text-xl shadow-2xl hover:scale-110 transition-all flex items-center justify-center"
           >
-            <MessageCircle className="w-5 h-5 mr-2" />
-            Chat on WhatsApp
+            <MessageCircle className="w-8 h-8 mr-3" />
+            WhatsApp Now
+          </a>
+          <a
+            href="tel:+917619168045"
+            className="bg-white text-purple-600 hover:bg-gray-100 font-black py-6 px-12 rounded-xl text-xl shadow-2xl hover:scale-110 transition-all flex items-center justify-center"
+          >
+            <Phone className="w-8 h-8 mr-3" />
+            Call Now
           </a>
         </div>
-        <div className="mt-8 flex flex-wrap gap-6 justify-center text-sm">
-          <div className="flex items-center">
-            <Check className="w-5 h-5 text-green-300 mr-2" />
-            <span>Free Design Support</span>
-          </div>
-          <div className="flex items-center">
-            <Check className="w-5 h-5 text-green-300 mr-2" />
-            <span>Pan-India Free Shipping</span>
-          </div>
-          <div className="flex items-center">
-            <Check className="w-5 h-5 text-green-300 mr-2" />
-            <span>7-10 Days Delivery</span>
-          </div>
-        </div>
       </div>
     </div>
   );
 };
 
-// Footer
-const Footer = () => {
+// Minimal Footer
+const SimpleFooter = () => {
   return (
-    <footer className="bg-gray-900 text-white py-12 px-4">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
-          <div>
-            <h3 className="text-xl font-bold mb-4">Alma Mater Store</h3>
-            <p className="text-gray-400">India's most loved customised merchandise brand</p>
-          </div>
-          <div>
-            <h4 className="font-bold mb-4">Contact</h4>
-            <p className="text-gray-400 mb-2">Phone: +91 76191 68045</p>
-            <p className="text-gray-400 mb-2">Email: info@almamaterstore.in</p>
-            <p className="text-gray-400">WhatsApp: +91 76191 68045</p>
-          </div>
-          <div>
-            <h4 className="font-bold mb-4">Products</h4>
-            <ul className="text-gray-400 space-y-2">
-              <li>Custom T-Shirts</li>
-              <li>Custom Hoodies</li>
-              <li>Custom Sweatshirts</li>
-              <li>Bulk Orders</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold mb-4">Company</h4>
-            <ul className="text-gray-400 space-y-2">
-              <li>About Us</li>
-              <li>Contact</li>
-              <li>Terms & Conditions</li>
-              <li>Privacy Policy</li>
-            </ul>
-          </div>
+    <footer className="bg-gray-900 text-white py-8 px-4">
+      <div className="max-w-6xl mx-auto text-center">
+        <div className="flex flex-wrap justify-center gap-8 mb-6 text-lg">
+          <div>📞 +91 76191 68045</div>
+          <div>📧 info@almamaterstore.in</div>
+          <div>💬 WhatsApp +91 76191 68045</div>
         </div>
-        <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-          <p>&copy; 2025 Alma Mater Store. All rights reserved.</p>
-        </div>
+        <p className="text-gray-400">© 2025 Alma Mater Store • India's #1 Custom Merchandise</p>
       </div>
     </footer>
   );
 };
 
-// Bulk Order Page Component (Full Featured)
-const BulkOrderPage = () => {
-  const formRef = useRef(null);
-
-  const scrollToForm = () => {
-    formRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-
+// Main Aggressive Page
+const AggressiveBulkOrderPage = () => {
   return (
     <div className="min-h-screen">
-      <HeroSection onScrollToForm={scrollToForm} />
-      <BenefitsSection />
-      <SocialProofSection />
-      <ProcessSection />
-      <TestimonialsSection />
-      <FAQSection />
-      <LeadFormSection formRef={formRef} />
-      <FinalCTASection onScrollToForm={scrollToForm} />
-      <Footer />
-      <StickyContactButtons />
+      <AggressiveHero />
+      <QuickFormSection />
+      <MiniProcess />
+      <MiniFAQ />
+      <FinalCTA />
+      <SimpleFooter />
+      <FloatingWhatsAppButton />
     </div>
   );
 };
 
-// Simple Home/Landing Page
+// Home Page
 const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
-
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center">
       <div className="text-center p-8">
-        <h1 className="text-5xl font-bold mb-6 text-gray-800">Welcome to Alma Mater Store</h1>
-        <p className="text-xl text-gray-600 mb-8">India's Most Loved Customised Merchandise Brand</p>
+        <h1 className="text-5xl font-bold mb-6 text-gray-800">Alma Mater Store</h1>
+        <p className="text-xl text-gray-600 mb-8">India's Most Loved Custom Merchandise</p>
         <a
           href="/bulk-order"
-          className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg transition-all duration-300 hover:scale-105"
+          className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg"
         >
           View Bulk Order Page
         </a>
@@ -911,7 +500,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/bulk-order" element={<BulkOrderPage />} />
+          <Route path="/bulk-order" element={<AggressiveBulkOrderPage />} />
         </Routes>
       </BrowserRouter>
     </div>
